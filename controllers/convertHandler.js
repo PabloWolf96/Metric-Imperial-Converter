@@ -9,7 +9,7 @@ function ConvertHandler() {
     );
 
     if (!result) {
-      return "invalid input";
+      return "invalid number";
     }
     let [numerator, denomenator] = result[0].split("/");
     if (!denomenator) {
@@ -19,19 +19,40 @@ function ConvertHandler() {
     if (division !== Infinity) {
       return division;
     }
-    return "invalid input";
+    return "invalid number";
   };
 
   this.getUnit = function (input) {
-    let result;
-
-    return result;
+    let result = input.match(/[a-zA-Z]+$/g);
+    if (!result) {
+      return "invalid unit";
+    }
+    let units = ["lbs", "kg", "mi", "km", "l", "gal"];
+    let matchedUnit = result[0];
+    if (units.includes(matchedUnit.toLowerCase())) {
+      return matchedUnit;
+    }
+    return "invalid unit";
   };
 
   this.getReturnUnit = function (initUnit) {
-    let result;
-
-    return result;
+    let unit = initUnit.toLowerCase();
+    switch (unit) {
+      case "lbs":
+        return "kg";
+      case "kg":
+        return "lbs";
+      case "mi":
+        return "km";
+      case "km":
+        return "mi";
+      case "l":
+        return "gal";
+      case "gal":
+        return "l";
+      default:
+        return "invalid unit";
+    }
   };
 
   this.spellOutUnit = function (unit) {
@@ -44,6 +65,12 @@ function ConvertHandler() {
         return "kilograms";
       case "mi":
         return "miles";
+      case "km":
+        return "kilometers";
+      case "l":
+        return "L";
+      default:
+        return "invalid unit";
     }
   };
 
