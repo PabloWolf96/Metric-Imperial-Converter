@@ -50,56 +50,40 @@ suite("Unit Tests", () => {
     });
   });
   suite("convertHandler Function getUnit", () => {
-    test("convertHandler should correctly read a unit of lbs", () => {
-      assert.strictEqual(
-        convertHandler.getUnit("100lbs"),
+    test("convertHandler should correctly read a unit", () => {
+      let input = [
+        "gal",
+        "l",
+        "mi",
+        "km",
         "lbs",
-        "convertHandler.getUnit() should return 'lbs'"
-      );
+        "kg",
+        "GAL",
+        "L",
+        "MI",
+        "KM",
+        "LBS",
+        "KG",
+      ];
+      let output = [
+        "gal",
+        "L",
+        "mi",
+        "km",
+        "lbs",
+        "kg",
+        "gal",
+        "L",
+        "mi",
+        "km",
+        "lbs",
+        "kg",
+      ];
+      input.forEach(function (ele, index) {
+        assert.equal(convertHandler.getUnit(ele), output[index]);
+      });
     });
 
-    test("convertHandler should correctly read a unit of lbs", () => {
-      assert.strictEqual(
-        convertHandler.getUnit("100lbs"),
-        "lbs",
-        "convertHandler.getUnit() should return 'lbs'"
-      );
-    });
-    test("convertHandler should correctly read a unit of kg", () => {
-      assert.strictEqual(
-        convertHandler.getUnit("101.1kg"),
-        "kg",
-        "convertHandler.getUnit() should return 'kg'"
-      );
-    });
-    test("convertHandler should correctly read a unit of gal", () => {
-      assert.strictEqual(
-        convertHandler.getUnit("1/2gal"),
-        "gal",
-        "convertHandler.getUnit() should return 'gal'"
-      );
-    });
-    test("convertHandler should correctly read a unit of mi", () => {
-      assert.strictEqual(
-        convertHandler.getUnit("0.1/2mi"),
-        "mi",
-        "convertHandler.getUnit() should return 'mi'"
-      );
-    });
-    test("convertHandler should correctly read a unit of km", () => {
-      assert.strictEqual(
-        convertHandler.getUnit("1.1/1.2km"),
-        "km",
-        "convertHandler.getUnit() should return 'km'"
-      );
-    });
-    test("convertHandler should correctly read a unit of L", () => {
-      assert.strictEqual(
-        convertHandler.getUnit("1000L"),
-        "L",
-        "convertHandler.getUnit() should return 'L'"
-      );
-    });
     test("convertHandler should correctly return an error for an invalid input unit.", () => {
       assert.strictEqual(
         convertHandler.getUnit("123.5oz"),
@@ -109,92 +93,28 @@ suite("Unit Tests", () => {
     });
   });
   suite("convertHandler getReturnUnit", () => {
-    test("convertHandler should correctly get the return unit for lbs", () => {
-      assert.strictEqual(
-        convertHandler.getReturnUnit("lbs"),
-        "kg",
-        "convertHandler.getReturnUnit() should return 'kg'"
-      );
-    });
-
-    test("convertHandler should correctly get the return unit for kg", () => {
-      assert.strictEqual(
-        convertHandler.getReturnUnit("kg"),
-        "lbs",
-        "convertHandler.getReturnUnit() should return 'lbs'"
-      );
-    });
-    test("convertHandler should correctly get the return unit for gal", () => {
-      assert.strictEqual(
-        convertHandler.getReturnUnit("gal"),
-        "l",
-        "convertHandler.getReturnUnit() should return 'l'"
-      );
-    });
-    test("convertHandler should correctly get the return unit for l=L", () => {
-      assert.strictEqual(
-        convertHandler.getReturnUnit("L"),
-        "gal",
-        "convertHandler.getReturnUnit() should return 'gal'"
-      );
-    });
-    test("convertHandler should correctly get the return unit for mi", () => {
-      assert.strictEqual(
-        convertHandler.getReturnUnit("mi"),
-        "km",
-        "convertHandler.getReturnUnit() should return 'km'"
-      );
-    });
-    test("convertHandler should correctly get the return unit for km", () => {
-      assert.strictEqual(
-        convertHandler.getReturnUnit("km"),
-        "mi",
-        "convertHandler.getReturnUnit() should return 'mi'"
-      );
+    test("convertHandler should correctly get the return unit", () => {
+      let input = ["gal", "l", "mi", "km", "lbs", "kg"];
+      let expect = ["L", "gal", "km", "mi", "kg", "lbs"];
+      input.forEach(function (ele, i) {
+        assert.equal(convertHandler.getReturnUnit(ele), expect[i]);
+      });
     });
   });
   suite("convertHandler spellOutUnit", () => {
-    test("convertHandler should correctly spellout units in lbs", () => {
-      assert.strictEqual(
-        convertHandler.spellOutUnit("lbs"),
-        "pounds",
-        "convertHandler.spellOutUnit() should return 'pounds'"
-      );
-    });
-    test("convertHandler should correctly spellout units in kg", () => {
-      assert.strictEqual(
-        convertHandler.spellOutUnit("kg"),
-        "kilograms",
-        "convertHandler.spellOutUnit() should return 'kilograms'"
-      );
-    });
-    test("convertHandler should correctly spellout units in gal", () => {
-      assert.strictEqual(
-        convertHandler.spellOutUnit("gal"),
+    test("convertHandler should correctly spellout units", () => {
+      let input = ["gal", "l", "mi", "km", "lbs", "kg"];
+      let expect = [
         "gallons",
-        "convertHandler.spellOutUnit() should return 'gallons'"
-      );
-    });
-    test("convertHandler should correctly spellout units in l", () => {
-      assert.strictEqual(
-        convertHandler.spellOutUnit("l"),
-        "L",
-        "convertHandler.spellOutUnit() should return 'L'"
-      );
-    });
-    test("convertHandler should correctly spellout units in mi", () => {
-      assert.strictEqual(
-        convertHandler.spellOutUnit("mi"),
+        "liters",
         "miles",
-        "convertHandler.spellOutUnit() should return 'miles'"
-      );
-    });
-    test("convertHandler should correctly spellout units in km", () => {
-      assert.strictEqual(
-        convertHandler.spellOutUnit("km"),
         "kilometers",
-        "convertHandler.spellOutUnit() should return 'kilometers'"
-      );
+        "pounds",
+        "kilograms",
+      ];
+      input.forEach(function (ele, i) {
+        assert.equal(convertHandler.spellOutUnit(ele), expect[i]);
+      });
     });
   });
   suite("convertHandler convert", () => {

@@ -30,7 +30,9 @@ function ConvertHandler() {
     let units = ["lbs", "kg", "mi", "km", "l", "gal"];
     let matchedUnit = result[0];
     if (units.includes(matchedUnit.toLowerCase())) {
-      return matchedUnit;
+      return matchedUnit.toLowerCase() !== "l"
+        ? matchedUnit.toLowerCase()
+        : "L";
     }
     return "invalid unit";
   };
@@ -49,14 +51,14 @@ function ConvertHandler() {
       case "l":
         return "gal";
       case "gal":
-        return "l";
+        return "L";
       default:
         return "invalid unit";
     }
   };
 
   this.spellOutUnit = function (unit) {
-    switch (unit.toLowerCase()) {
+    switch (unit) {
       case "gal":
         return "gallons";
       case "lbs":
@@ -68,7 +70,7 @@ function ConvertHandler() {
       case "km":
         return "kilometers";
       case "l":
-        return "L";
+        return "liters";
       default:
         return "invalid unit";
     }
