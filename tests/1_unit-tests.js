@@ -197,4 +197,48 @@ suite("Unit Tests", () => {
       );
     });
   });
+  suite("convertHandler convert", () => {
+    test("convertHandler should correctly convert gal to L.", () => {
+      assert.strictEqual(
+        convertHandler.convert(10, "gal"),
+        "37.85410L",
+        "convertHandler.convert() should return 37.85410L"
+      );
+    });
+    test("convertHandler should correctly convert L to gal.", () => {
+      assert.strictEqual(
+        convertHandler.convert(10, "L"),
+        "2.64172gal",
+        "convertHandler.convert() should return 2.64172gal"
+      );
+    });
+    test("convertHandler should correctly convert mi to km.", () => {
+      assert.strictEqual(
+        convertHandler.convert(100, "mi"),
+        "160.93400km",
+        "convertHandler.convert() should return 160.93400km"
+      );
+    });
+    test("convertHandler should correctly convert km to mi.", () => {
+      assert.strictEqual(
+        convertHandler.convert(100, "km"),
+        "62.13727mi",
+        "convertHandler.convert() should return 62.13727mi"
+      );
+    });
+    test("convertHandler should correctly convert kg to lbs.", () => {
+      assert.strictEqual(
+        convertHandler.convert(10, "kg"),
+        "22.04624lbs",
+        "convertHandler.convert() should return 22.04624lbs"
+      );
+    });
+    test("convertHandler should correctly convert lbs to kg.", () => {
+      assert.strictEqual(
+        convertHandler.convert(10, "lbs"),
+        "4.53592kg",
+        "convertHandler.convert() should return 4.53592kg"
+      );
+    });
+  });
 });
